@@ -5,9 +5,9 @@ package com.david.rxbus;
  */
 
 public enum ThreadMode {
-  CURRENT,
-  MAIN,
-  IO,
-  COMPUTATION,
-  NEW
+  CURRENT,//当前线程
+  MAIN,//主线程（UI线程）
+  IO,//对应 Schedulers.io()
+  COMPUTATION,//对应 Schedulers.computation()
+  NEW//创建一个新的线程执行,对应 Schedulers.newThread()
 }

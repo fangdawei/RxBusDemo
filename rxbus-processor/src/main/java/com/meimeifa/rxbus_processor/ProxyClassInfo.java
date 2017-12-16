@@ -1,6 +1,6 @@
 package com.meimeifa.rxbus_processor;
 
-import com.david.rxbus.RxBusConstants;
+import com.david.rxbus.RxBus;
 import com.david.rxbus.RxBusImpl;
 import com.david.rxbus.RxBusProxy;
 import com.squareup.javapoet.ClassName;
@@ -37,7 +37,7 @@ public class ProxyClassInfo {
   public ProxyClassInfo(TypeElement sourceClassTypeElement, String packageName) {
     this.sourceClassTypeElement = sourceClassTypeElement;
     this.packageName = packageName;
-    proxyClassSimpleName = getClassSimpleName(sourceClassTypeElement) + RxBusConstants.PROXY_CLASS_SUFFIX;
+    proxyClassSimpleName = getClassSimpleName(sourceClassTypeElement) + RxBus.PROXY_CLASS_SUFFIX;
   }
 
   public void addSourceMethodInfo(SourceMethodInfo methodInfo) {

@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class RxBus {
 
+  public static final String PROXY_CLASS_SUFFIX = "_RxBusProxy";
+
   private static Map<String, RxBusProxy> proxyMap = new HashMap<>();
 
   public static void register(Object source) {
@@ -33,7 +35,7 @@ public class RxBus {
       String className = clazz.getName();
       RxBusProxy proxy = proxyMap.get(className);
       if (proxy == null) {
-        Class proxyClass = Class.forName(className + RxBusConstants.PROXY_CLASS_SUFFIX);
+        Class proxyClass = Class.forName(className + PROXY_CLASS_SUFFIX);
         proxy = (RxBusProxy) proxyClass.newInstance();
       }
       return proxy;
@@ -45,7 +47,7 @@ public class RxBus {
       e.printStackTrace();
     }
     throw new RuntimeException(String.format("can not find %s , something when compiler.",
-        source.getClass().getSimpleName() + RxBusConstants.PROXY_CLASS_SUFFIX));
+        source.getClass().getSimpleName() + PROXY_CLASS_SUFFIX));
   }
 
   private static void addRxBusProxy(Object source, RxBusProxy proxy) {

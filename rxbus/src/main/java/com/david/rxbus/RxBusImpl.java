@@ -17,8 +17,7 @@ public class RxBusImpl {
 
   private static volatile RxBusImpl instance;
 
-  private FlowableProcessor<Object> mBus;
-  private Map<Class, Disposable> eventDisposableMap;
+  private FlowableProcessor<Object> flowableProcessor;
 
   public static RxBusImpl getInstance() {
     if (instance != null) {
@@ -34,34 +33,19 @@ public class RxBusImpl {
   }
 
   private RxBusImpl() {
-    mBus = PublishProcessor.create().toSerialized();
-    eventDisposableMap = new HashMap<>();
+    flowableProcessor = PublishProcessor.create().toSerialized();
   }
 
   public void post(Object target) {
-    mBus.onNext(target);
+    flowableProcessor.onNext(target);
   }
 
   /**
    * RxBusProxy的register中会调用
    */
   public Disposable register(Class event, Consumer observer, Scheduler scheduler) {
-    Flowable flowable = mBus.ofType(event).observeOn(scheduler);
+    Flowable flowable = flowableProcessor.ofType(event).observeOn(scheduler);
     Disposable disposable = flowable.subscribe(observer);
-    eventDisposableMap.put(event, disposable);
     return disposable;
-  }
-
-  /**
-   * RxBusProxy的unregister中会调用
-   */
-  public void unregister(Class event) {
-    Disposable disposable = eventDisposableMap.get(event);
-    if (disposable != null) {
-      if (!disposable.isDisposed()) {
-        disposable.dispose();
-      }
-      eventDisposableMap.remove(event);
-    }
   }
 }

@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
  * Created by david on 2017/5/13.
  */
 
-@Retention(RetentionPolicy.CLASS) @Target(ElementType.METHOD) public @interface Subscribe {
+@Retention(RetentionPolicy.SOURCE) @Target(ElementType.METHOD) public @interface Subscribe {
   ThreadMode thread() default ThreadMode.CURRENT;
 }
