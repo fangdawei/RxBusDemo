@@ -77,8 +77,8 @@ import javax.tools.Diagnostic;
     }
   }
 
-  private TypeElement getClassTypeElement(ExecutableElement methodElement) {
-    TypeElement classElement = (TypeElement) methodElement.getEnclosingElement();
+  private TypeElement getClassTypeElement(Element element) {
+    TypeElement classElement = (TypeElement) element.getEnclosingElement();
     return classElement;
   }
 
@@ -87,9 +87,9 @@ import javax.tools.Diagnostic;
     return packageElement.getQualifiedName().toString();
   }
 
-  private String getClassFullName(ExecutableElement methodElement) {
+  private String getClassFullName(Element element) {
     //class type
-    TypeElement classElement = getClassTypeElement(methodElement);
+    TypeElement classElement = getClassTypeElement(element);
     //full class name
     String fqClassName = classElement.getQualifiedName().toString();
     return fqClassName;
