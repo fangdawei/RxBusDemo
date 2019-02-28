@@ -1,4 +1,4 @@
-package com.meimeifa.rxbus_processor;
+package com.david.rxbus_processor;
 
 import com.david.rxbus.RxBus;
 import com.david.rxbus.RxBusImpl;

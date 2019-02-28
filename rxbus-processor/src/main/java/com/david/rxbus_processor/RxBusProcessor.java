@@ -1,9 +1,8 @@
-package com.meimeifa.rxbus_processor;
+package com.david.rxbus_processor;
 
 import com.david.rxbus.Subscribe;
 import com.google.auto.service.AutoService;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

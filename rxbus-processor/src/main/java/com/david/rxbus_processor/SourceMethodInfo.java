@@ -1,4 +1,4 @@
-package com.meimeifa.rxbus_processor;
+package com.david.rxbus_processor;
 
 import com.david.rxbus.Subscribe;
 import com.squareup.javapoet.ClassName;
